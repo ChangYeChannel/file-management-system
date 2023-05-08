@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.party.dao.FilePartyDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.party.entity.FilePartyEntity" id="filePartyMap">
+        <result property="partyId" column="party_id"/>
+        <result property="partyName" column="party_name"/>
+        <result property="parentId" column="parent_id"/>
+    </resultMap>
+
+</mapper>

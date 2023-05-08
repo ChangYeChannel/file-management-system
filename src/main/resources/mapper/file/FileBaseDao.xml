@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.file.dao.FileBaseDao">
+
+	<!-- 文件档案基本信息 -->
+    <resultMap type="io.renren.modules.file.entity.FileBaseEntity" id="fileBaseMap">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="idCard" column="id_card"/>
+        <result property="birthday" column="birthday"/>
+        <result property="partyBranchesId" column="party_branches_id"/>
+        <result property="joinTime" column="join_time"/>
+        <result property="joinPartyBranchesName" column="join_party_branches_name"/>
+        <result property="positiveTime" column="positive_time"/>
+        <result property="positivePartyBranchesName" column="positive_party_branches_name"/>
+        <result property="referencesOne" column="references_one"/>
+        <result property="referencesTwo" column="references_two"/>
+        <result property="volunteerBookId" column="volunteer_book_id"/>
+        <result property="status" column="status"/>
+        <result property="inboundTime" column="inbound_time"/>
+        <result property="rolloutTime" column="rollout_time"/>
+        <result property="deathTime" column="death_time"/>
+        <result property="expelTime" column="expel_time"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <insert id="supplement" parameterType="fileBaseEntity">
+        update tb_file_base
+        <trim prefix="set" suffixOverrides="," suffix="where id = #{id}">
+            <if test="joinPartyBranchesName != null and joinPartyBranchesName !=''">join_party_branches_name = #{joinPartyBranchesName},</if>
+            <if test="positiveTime != null">positive_time = #{positiveTime},</if>
+            <if test="positivePartyBranchesName != null and positivePartyBranchesName !=''">positive_party_branches_name = #{positivePartyBranchesName},</if>
+            <if test="referencesOne != null and referencesOne !=''">references_one = #{referencesOne},</if>
+            <if test="referencesTwo != null and referencesTwo !=''">references_two = #{referencesTwo},</if>
+            <if test="volunteerBookId != null">volunteer_book_id = #{volunteerBookId},</if>
+        </trim>
+    </insert>
+
+    <update id="alterStatus" parameterType="fileBaseEntity">
+        update tb_file_base
+        <trim prefix="set" suffixOverrides="," suffix="where id = #{id}">
+            <if test="status != null">status = #{status},</if>
+            <if test="rolloutTime != null">rollout_time = #{rolloutTime},</if>
+            <if test="deathTime != null">death_time = #{deathTime},</if>
+            <if test="expelTime != null">expel_time = #{expelTime},</if>
+        </trim>
+    </update>
+
+    <update id="fileDeleteById" parameterType="fileBaseEntity">
+        update tb_file_base set status = 4 where id = #{id}
+    </update>
+
+
+</mapper>
